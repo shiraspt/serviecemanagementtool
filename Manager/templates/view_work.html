@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manager view report</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="overflow-y:none;">
+
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+            
+             <a href="{% url 'Manager:manager_home' %}">Home </a>
+             
+             
+             
+ 
+         </div>
+ 
+      <div class="main_window" style="overflow: scroll; height: 620px;">
+
+        <table class="work_list">
+            <tr>      <td>Complaint Number</td> <td>{{complaint_data.complaint_name}}</td>    </tr>
+            <tr>      <td>Customer Name</td> <td>{{complaint_data.customer_name}}</td>    </tr>
+            <tr>      <td>Customer Phone</td> <td>{{complaint_data.customer_phone1}}</td>    </tr>
+            <tr>      <td>Alternate number</td> <td>{{complaint_data.customer_phone2}}</td>    </tr>
+            <tr>      <td>Email</td> <td>{{complaint_data.customer_email}}</td>    </tr>
+            <tr>      <td>Adress</td> <td>{{complaint_data.customer_address}}</td>    </tr>
+            <tr>      <td>Product Category</td> <td>{{complaint_data.category_name}}</td>    </tr>
+            <tr>      <td>Product Model</td> <td>{{complaint_data.model_name}}</td>    </tr>
+            <tr>      <td>Complaint</td> <td>{{complaint_data.complaint_des}}</td>    </tr>
+            <tr>      <td>purchase Date</td> <td>{{complaint_data.purchase_date}}</td>    </tr>
+            <tr>      <td>Warrenty </td> <td>{{complaint_data.warrenty}}</td>    </tr>
+            <tr>      <td>Serial Number </td> <td>{{complaint_data.serial}}</td>    </tr>
+            <tr>      <td>complaint registration date</td> <td>{{complaint_data.complaint_date}}</td>    </tr>
+            <tr>      <td>Technician</td> <td>{{complaint_data.technician_name}}</td>    </tr>
+            <tr>      <td>status</td> <td>{{complaint_data.work_status}}</td>    </tr>
+            <tr>      <td>Physical Damage</td> <td>{{complaint_data.physical_damage}}</td>    </tr>
+            <tr>      <td>Remark</td> <td>{{complaint_data.remark}}</td>    </tr>
+    
+    
+        
+    
+         </table>
+
+
+         <table class="work_list">
+        
+            <tr  id="hd"><td>Report</td><td>Date</td><td>Time</td><td>Warrenty</td><td>Status</td><td>Serviece <br/> Charge</td><td>Distance <br/>Traveled</td></th>
+            {% for i in report_data %}
+            <tr> <td>{{i.description}}</td><td>{{i.work_date}}</td><td>{{i.work_time}}</td><td>{{i.warrenty}}</td><td>{{i.work_status}}</td><td>{{i.serviece_charge}}</td><td>{{i.travel_distance}}</td></tr>
+           
+            {% endfor %} 
+    
+        </table>
+<!-- <a href="{% url 'Manager:view_report' complaint_data.id %}">View Report</a> -->
+
+      </div>
+    
+</body>
+</html>

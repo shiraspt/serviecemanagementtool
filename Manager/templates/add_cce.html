@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add CCE</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+        <a href="{% url 'Manager:manager_home' %}">Home</a>
+    </div>
+
+    <t1>Add Call centre executive</t1>
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table class="reg_form"> 
+<tr><td> Name </td><td><input type="text" name="cce_name" id="cce_name"> </td></tr>
+<tr><td> Mobile number </td><td><input type="text" name="cce_mob" id="cce_mob">  </td></tr>
+<tr><td> E mail </td><td> <input type="text" name="cce_email" id="cce_email">  </td></tr>
+<tr><td>Age  </td><td> <input type="text" name="cce_age" id="cce_age"> </td></tr>
+<tr><td> Gender   </td><td><select name="cce_gender" id="cce_gender">
+    <option>Select</option>
+    <option>Male</option>
+    <option >Female</option>
+</select>  
+</td></tr>
+<tr><td>   Address </td><td> <textarea name="cce_address" id="cce_address"></textarea></td></tr>
+<tr><td>Photo</td><td> <input type="file" name="cce_photo" id="cce_photo"></td></tr>
+
+<tr><td> Joining Date  </td><td> <input type="date" name="cce_jdate" id="cce_jdate" ></td></tr>
+<tr><td>  Password </td><td><input type="password" name="cce_pword" id="cce_pword"></td></tr>
+<tr><td>  Confirm Password  </td><td><input type="password" name="cce_cpword" id="cce_cpword"></td></tr>
+<tr><td>  <button class="submit" id="submit">SUBMIT</button>   </td><td></td></tr>
+
+               </table>
+        
+            </form>   
+
+       
+        
+
+       
+
+        
+       
+
+       
+        
+       
+        
+        
+       
+
+        
+       
+        
+       
+
+       
+        
+
+       
+        
+
+        
+         
+
+
+
+        
+
+        {{msg}}
+    <div class="bottom"></div>
+</body>
+</html>

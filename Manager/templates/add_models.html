@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add model</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+        <t1>Add Product Model</t1>
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+            
+             <a href="{% url 'Manager:manager_home' %}">Home </a>
+             
+             
+             
+ 
+         </div>
+ 
+      <div class="main_window">
+       
+        
+        <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="reg_form_1">
+            <table class="reg_form">
+           
+             <tr>
+                <td>Category</td><td>
+                    <select name="p_category" id="p_category">
+                        <option value="">Select</option>
+               
+                        {% for i in category %}
+                        <option value="{{i.id}}">{{i.category}}</option>
+                        {% endfor %}
+                    </select> 
+    
+             </td>
+            </tr>
+             
+             
+    
+             
+             <tr><td>Model Name</td><td><input type="text" name="model_name" id="model_name"></td></tr>
+             <tr><td>Warrenty Period</td><td><input type="text" name="warrenty" id="warrenty"></td></tr>
+             <tr><td><button id="submit">SUBMIT</button> </td><td></td></tr>
+    
+             </table>
+            </div>
+            </form>
+     
+
+
+
+      </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technicians</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+        
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a>
+        <t1>Technicians</t1> 
+     </div>
+     <div class="main_body" >
+         <div class="side_bar">
+            
+             <a href="{% url 'Manager:manager_home' %}">Home </a>
+             
+             
+             
+ 
+         </div>
+ 
+      <div class="main_window">
+        
+       <div class="tec_list">
+
+        {% for i in tec_list %}
+        <a href="{% url 'Manager:tec_profile' i.id %}">   
+        <div class="tec_card">
+           <img src="http://127.0.0.1:8000/media/{{i.tec_photo}}" width="100%" height="50%">
+           
+         <t>{{i.tec_name}} </t>  
+         <t> {{i.tec_location}} </t>
+         <t>{{i.tec_phone}} </t> 
+         <!-- <t>{{i.pending}} </t>  -->
+         
+
+        </div>
+    </a>
+        {% endfor %} 
+
+       </div>
+    </div>
+    </div>
+</body>
+</html>

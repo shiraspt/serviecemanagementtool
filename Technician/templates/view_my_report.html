@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View work</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Technician:logout' %}">Logout</a> 
+        <!-- {{cce_details.cce_name}} -->
+        {{name}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+             
+             
+             
+             <!-- <a href="#">My Profile</a> -->
+             <a href="{% url 'Technician:tec_home' %}">Home</a>
+ 
+         </div>
+ 
+      <div class="main_window">
+        <t1 style="margin-left: 5px;">{{complaint_data.complaint_name}}</t1>
+       
+        <table class="work_list">
+        
+            <tr  id="hd"><td>Report</td><td>Date</td><td>Time</td><td>Warrenty</td><td>Status</td><td>Serviece <br/> Charge</td><td>Distance <br/>Traveled</td></th>
+            {% for i in report_data %}
+            <tr> <td>{{i.description}}</td><td>{{i.work_date}}</td><td>{{i.work_time}}</td><td>{{i.warrenty}}</td><td>{{i.work_status}}</td><td>{{i.serviece_charge}}</td><td>{{i.travel_distance}}</td></tr>
+           
+            {% endfor %} 
+    
+        </table>
+       
+      </div>
+ 
+     </div>
+
+
+   
+</body>
+</html>

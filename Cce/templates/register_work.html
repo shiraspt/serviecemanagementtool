@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register_work</title>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.4.js"
+			  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+			  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  
+    <div class="topbar">
+        <a href="{% url 'Cce:logout' %}">logout</a>
+        {{cce_details.cce_name}}
+        {{msg}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+            <a href="{% url 'Cce:complaint_list' %}">View Complaints </a>
+             <a href="{% url 'Cce:cce_home' %}">Home</a>
+             
+             <!-- <a href="#">My Profile</a> -->
+ 
+         </div>
+ 
+      <div class="main_window">
+      <t1>Register work</t1>
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="reg_form_1">
+       <table class="reg_form">
+        <tr>
+            <td>Customer Name</td> <td><input type="text" id="customer_name" name="customer_name" required> </td>
+        </tr>
+    
+    
+        <tr>
+            <td>Customer Phone number</td> <td><input type="text" id="customer_phone" name="customer_phone" required></td>
+        </tr>
+    
+        <tr>
+            <td>Alternate Number</td> <td><input type="text" id="customer_phone2" name="customer_phone2"></td>
+        </tr>
+    
+        <tr>
+            <td>Customer Email</td> <td><input type="text" id="customer_email" name="customer_email"></td>
+    
+        </tr>
+    
+        <tr>
+            <td>Customer Address</td> <td><textarea name="customer_address" id="customer_address" cols="30" rows="10" required></textarea></td>
+        </tr>
+    
+        <tr>
+            <td>Work location</td> <td>
+                
+                <select name="work_location" id="work_location" required>
+                <option value="">Select</option>
+              
+                {% for i in location_list %}
+                <option value="{{i.id}}">{{i.location}}</option>
+            
+                {% endfor %} 
+            
+            
+            
+            </select>
+
+        </td>
+        </tr>
+   </table>
+   <table class="reg_form">
+        <tr>
+            <td>Product Category</td>
+    
+             <td>
+                
+                 <select name="product_category" id="product_category" required>
+                <option value="">Select</option>
+                
+                {% for i in category_list %}
+                    <option value="{{i.id}}">{{i.category}}</option>
+                
+                    {% endfor %} 
+                
+                 </select>  
+                
+                </td>
+        </tr>
+    
+        <tr>
+            <td>Product model</td> <td>
+              
+    
+                <select name="product_model" id="product_model">
+              
+
+                 </select>
+                
+                
+                </td>
+    
+    
+        </tr>
+    
+    
+      
+    
+        <tr>
+            <td>Complaint</td> <td><input type="text" id="complaint" name="complaint" required></td>
+        </tr>
+    
+    
+        <tr>
+            <td>Purchase date</td> <td><input type="date" id="purchase date" name="purchase date" style="width: 200px;"></td>
+        </tr>
+
+        <tr>
+            <td>Serial Number</td> <td><input type="serial" id="serial" name="serial" style="width: 200px;"></td>
+        </tr>
+    
+    
+        <tr>
+            <td>Remark</td> <td><textarea name="remark" id="remark" cols="30" rows="10"></textarea></td>
+        </tr>
+    
+      
+    
+    
+        </table>
+       
+    </div>
+    <button class="button_1" style="margin-left: 100px;" id="submit">submit</button>
+    </form>
+
+    <script>
+
+$('#submit').click(function(){
+            
+            var  phone=$('#customer_phone').val()
+            var validmob = /^[6-9]{1}[0-9]{9}$/;
+            if  (phone.match(validmob))
+            {
+            console.log('ok')
+            }
+            
+            else
+            {
+                $("#customer_phone").css("background-color", "red");
+                // console.log('no')
+                return false
+                
+            }
+
+            
+            var validemail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            
+            var email = $('#customer_email').val()
+
+            if  (email.match(validemail))
+            {
+            console.log('ok1')
+            }
+            
+            else
+            {
+                $("#customer_email").css("background-color", "red");
+                console.log('no1')
+                return false
+            }
+
+           
+            
+        })
+        $('#customer_phone').click(function(){
+                    
+                    $("#customer_phone").css("background-color", "white");
+
+
+
+                } )
+
+
+                $('#customer_email').click(function(){
+                   
+                    $("#customer_email").css("background-color", "white");
+
+
+
+                } )
+    
+
+
+
+        $('#product_category').change(function(){
+            var productcat=$('#product_category').val()
+            
+            $.ajaxSetup({
+                headers: {
+                  "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()  //passing csrf token in ajax request
+                }
+            })
+            
+    
+            $.ajax({
+                url:"{% url 'Cce:model_select' %}",  // url in which ajax call is made
+                type:'POST',  //method in which data is send
+                data:{
+                    'product_category':productcat  //sending data in json fromat here, key is email
+                },
+                
+                success:function(response){   
+                    console.log(response.models)
+                    // alert('email id already exists')
+                    var data = response.models
+                    $('#product_model').empty()
+                    $('#product_model').append($('<option>').text('select model'))
+                    for(model in data){
+                        console.log(model)
+                        $('#product_model').append($('<option>').text(data[model].name).attr('value',data[model].id))
+
+                    }    
+
+                    
+                    
+                }
+                
+            })
+
+            console.log(productcat)
+           
+
+            
+        })
+    </script>
+     </div>
+
+
+
+
+
+
+
+    
+
+   
+
+</body>
+</html>

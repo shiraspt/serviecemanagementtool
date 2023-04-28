@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update tec</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.js"
+    integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+        <t1>Update Technician Data</t1>
+    </div>
+    <div class="main_body">
+        <div class="side_bar">
+            
+            <a href="{% url 'Manager:manager_home' %}">Home </a>
+            
+            
+            
+
+        </div>
+        <div class="main_window">
+
+
+    <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="reg_form_1">
+        <table class="reg_form">
+
+        <tr><td>Name</td><td><input type="text" name="tec_name" id="tec_name" value="{{tec_data.tec_name}}"></td></tr>
+         <tr><td>Mobile Number</td><td><input type="text" name="tec_mob" id="tec_mob" value="{{tec_data.tec_phone}}"></td></tr>
+         <tr><td>E mail</td><td><input type="text" name="tec_email" id="tec_email" value="{{tec_data.tec_email}}"></td></tr>
+         <tr><td>Age</td><td><input type="text" name="tec_age" id="tec_age" value="{{tec_data.tec_age}}">  <br>   <br></td></tr>
+         <tr><td>Gender</td><td>
+            <select name="tec_gender" id="tec_gender" >
+    
+                <option value="{{tec_data.tec_gender}}" selected>{{tec_data.tec_gender}}</option>
+                {% if tec_data.tec_gender == "Female" %}
+                <option value="Male">Male</option>
+                {% else %}
+                <option value="Female">Female</option>
+                {% endif %}
+
+                </select> </td></tr>
+
+
+         <tr>
+            <td>Work Location</td><td> 
+                <select name="work_location" id="work_location">
+                    <option value="{{tec_data.location_id}}" selected>{{tec_data.tec_location}}</option>
+                    <option value="">Select</option>
+           
+                    {% for i in location_list %}
+                    <option value="{{i.id}}">{{i.location}}</option>
+                    {% endfor %}
+                </select> 
+                
+         </td>
+        </tr>
+    </table>
+    <table class="reg_form">
+         <tr><td>Address</td><td> <textarea name="tec_address" id="tec_address" cols="10" rows="10">{{tec_data.tec_Address}}</textarea></td></tr>
+         <tr><td>Photo</td><td><input type="file" name="tec_photo" id="tec_photo"></td></tr>
+
+         <tr><td>Joining Date</td><td><input type="date" name="tec_jdate" id="tec_jdate"  ></td></tr>
+         <tr><td>Password</td><td><input type="text" name="tec_pword" id="tec_pword"></td></tr>
+         <!-- <tr><td>Confirm Password</td><td><input type="text" name="tec_cpword" id="tec_cpword"></td></tr> -->
+         
+
+         </table>
+        </div>
+        <button id="submit" class="button_1" style="margin-left: 100px;" type="submit" onclick="return validate()">Submit</button>
+        </form>
+        <div class="bottom"></div>
+    </div>
+         
+    </div>
+        <script>
+    $('#submit').click(function(){
+            
+        var  mob=$('#tec_mob').val()
+        var validmob = /^[6-9]{1}[0-9]{9}$/;
+        if  (mob.match(validmob))
+        {
+        console.log('ok')
+        }
+        
+        else
+        {
+            $("#tec_mob").css("background-color", "red");
+            console.log('no')
+            return false
+            
+        }
+
+        
+        var validemail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        
+        var email = $('#tec_email').val()
+
+        if  (email.match(validemail))
+        {
+        console.log('ok1')
+        }
+        
+        else
+        {
+            $("#tec_email").css("background-color", "red");
+            console.log('no1')
+            return false
+        }
+
+       
+        
+    })
+    $('#tec_mob').click(function(){
+                $("#tec_mob").css("background-color", "white");
+
+
+
+            } )
+
+
+            $('#tec_email').click(function(){
+                
+                $("#tec_email").css("background-color", "white");
+
+
+
+            } )
+
+
+</script>
+</body>
+</html>

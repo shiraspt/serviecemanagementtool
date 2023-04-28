@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Complaint </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    
+    <div class="topbar">
+        <a href="{% url 'Cce:logout' %}">Logout</a> 
+        {{cce_details.cce_name}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+            <a href="{% url 'Cce:complaint_list' %}">View Complaints </a>
+             <a href="{% url 'Cce:register_work' %}">Register work</a>
+             <a href="{% url 'Cce:cce_home' %}">Home</a>
+             <!-- <a href="#">My Profile</a> -->
+ 
+         </div>
+ 
+      <div class="main_window">
+        <table class="work_list">
+            <tr>      <td>Complaint Number</td> <td>{{complaint_data.complaint_name}}</td>    </tr>
+            <tr>      <td>Customer Name</td> <td>{{complaint_data.customer_name}}</td>    </tr>
+            <tr>      <td>Customer Phone</td> <td>{{complaint_data.customer_phone1}}</td>    </tr>
+            <tr>      <td>Alternate number</td> <td>{{complaint_data.customer_phone2}}</td>    </tr>
+            <tr>      <td>Email</td> <td>{{complaint_data.customer_email}}</td>    </tr>
+            <tr>      <td>Adress</td> <td>{{complaint_data.customer_address}}</td>    </tr>
+            <tr>      <td>Product Category</td> <td>{{complaint_data.category_name}}</td>    </tr>
+            <tr>      <td>Product Model</td> <td>{{complaint_data.model_name}}</td>    </tr>
+            <tr>      <td>Complaint</td> <td>{{complaint_data.complaint_des}}</td>    </tr>
+            <tr>      <td>purchase Date</td> <td>{{complaint_data.purchase_date}}</td>    </tr>
+            <tr>      <td>Warrenty </td> <td>{{complaint_data.warrenty}}</td>    </tr>
+            <tr>      <td>Serial Number </td> <td>{{complaint_data.serial}}</td>    </tr>
+            <tr>      <td>complaint registration date</td> <td>{{complaint_data.complaint_date}}</td>    </tr>
+            <tr>      <td>Technician</td> <td>{{complaint_data.technician_name}}</td>    </tr>
+            <tr>      <td>status</td> <td>{{complaint_data.work_status}}</td>    </tr>
+            <tr>      <td>Physical Damage</td> <td>{{complaint_data.physical_damage}}</td>    </tr>
+            <tr>      <td>Remark</td> <td>{{complaint_data.remark}}</td>    </tr>
+    
+    
+        
+    
+         </table>
+<a href="{% url 'Cce:update_complaint' complaint_data.id  %}"><div class="button_1">Edit</div></a>
+         
+      </div>
+     
+     </div>
+
+
+</body>
+</html>

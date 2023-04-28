@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add report</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Technician:logout' %}">Logout</a> 
+        <!-- {{cce_details.cce_name}} -->
+        {{name}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+             
+             
+             
+             <!-- <a href="#">My Profile</a> -->
+             <a href="{% url 'Technician:tec_home' %}">Home</a>
+ 
+         </div>
+ 
+      <div class="main_window">
+        <t1>Add Report to {{complaint_data.complaint_name}} </t1>
+        
+       
+                
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+        <table class="work_form">
+            <tr><td>Work report</td><td><textarea name="workreport" id="workreport" cols="30" rows="10"></textarea></td></tr>
+            <!-- <tr><td>Attended Date</td><td><input type="date" name="work_date" id="work_date"></td></tr>
+            <tr><td>Attended Time</td><td><input type="time" name="work_time" id="work_time"></td></tr> -->
+            <tr><td> Product Serial Number</td><td><input type="text" name="serialnumber" id="serial number" value="{{complaint_data.serial}}"></td></tr>
+            <tr><td>Work status</td><td><select name="work_status" id="work_status">
+                                         <option value="new">New</option>
+                                         <option value="Pending">Pending</option>
+                                         <option value="Finished">Finished</option>
+
+                                        </select></td></tr>
+            <tr><td>Warrenty status</td><td><select name="warrenty" id="warrenty">
+                                            <option value="true">In warrenty</option>
+                                            <option value="true">Out of warrenty</option>
+                                            </select></td></tr>
+     
+            <tr><td>Serviece Charge(if any)</td><td><input type="text" name="serviece charge" id="serviece charge"></td></tr>
+            <tr><td>Traveled Distance (in KM)</td><td><input type="text" id="distance" name="distance"></td></tr>
+            <tr><td><button>submit</button></td><td></td></tr>
+     
+         </table>
+        </form>
+         </div>
+</div>
+      </div>
+ 
+     </div>
+   
+</body>
+</html>

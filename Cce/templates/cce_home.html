@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cce_home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script>
+        console.log("was")
+        </script>
+    
+</head>
+<body>
+    
+    <div class="topbar">
+        <a href="{% url 'Cce:logout' %}">Logout</a> 
+        {{cce_details.cce_name}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+             <a href="{% url 'Cce:complaint_list' %}">View Complaints </a>
+             <a href="{% url 'Cce:register_work' %}">Register work</a>
+             
+             <!-- <a href="#">My Profile</a> -->
+ 
+         </div>
+ 
+      <div class="main_window"></div>
+ 
+     </div>
+     
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tec</title>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.4.js"
+			  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+			  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+        <t1>Add Technician</t1>
+        
+    </div>
+    <div class="main_body">
+        <div class="side_bar">
+            <a href="{% url 'Manager:manager_home' %}">Home </a>
+            <!-- <a href="{% url 'Manager:add_tec' %}">Add Technician </a> -->
+            <!-- <a href="{% url 'Manager:add_cce' %}">Add CCE </a> -->
+            <!-- <a href="{% url 'Manager:view_tec' %}">View Technician </a>
+            <a href="{% url 'Manager:add_models' %}">Add Product Models</a> -->
+
+        </div>
+
+     <div class="main_window">
+
+    
+   
+   
+    <form  method="POST" enctype="multipart/form-data">
+        <div class="reg_form_1">
+        {% csrf_token %}
+        <table class="reg_form">
+        <tr><td>Name</td><td><input type="text" name="tec_name" id="tec_name" required></td></tr>
+         <tr><td>Mobile Number</td><td><input type="text" name="tec_mob" id="tec_mob" required></td></tr>
+         <tr><td>E mail</td><td><input type="text" name="tec_email" id="tec_email" required></td></tr>
+         <tr><td>Age</td><td><input type="text" name="tec_age" id="tec_age">  <br>   <br></td></tr>
+         <tr><td>Gender</td><td>
+            <select name="tec_gender" id="tec_gender">
+    
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                </select> </td></tr>
+
+
+         <tr>
+            <td>Work Location</td><td>
+                <select name="work_location" id="work_location" required>
+                    <option value="">Select</option>
+           
+                    {% for i in location_list %}
+                    <option value="{{i.id}}">{{i.location}}</option>
+                    {% endfor %}
+                </select> 
+
+         </td>
+        </tr>
+        </table>
+        <table class="reg_form" >
+         <tr><td>Address</td><td rowspan="2"> <textarea name="tec_address" id="tec_address" cols="10" rows="10" required></textarea></td></tr>
+         <tr><td></td></tr>
+         <tr><td>Photo</td><td><input type="file" name="tec_photo" id="tec_photo"></td></tr>
+
+         <tr><td>Joining Date</td><td><input type="date" name="tec_jdate" id="tec_jdate"></td></tr>
+         <tr><td>Password</td><td><input type="text" name="tec_pword" id="tec_pword" required></td></tr>
+         <tr><td></td><td><span id=spassword></span></td></tr>
+        
+         </table>
+        </div>
+        <button id="submit" class="button_1" style="margin-left: 100px;" type="submit" onclick="return validate()">Submit</button>
+        </form>
+  
+        <div class="bottom"></div>
+    </div>
+        
+
+    </div>  
+<script>
+    // function validate() {
+        // console.log("xxxxx")
+    //     var mob = document.getElementById("tec_mob")
+    //     var email = document.getElementById("tec_email")
+    //     var pword = document.getElementById("tec_pword")
+    //     var spassword = document.getElementById("spassword")
+
+    //     var cpword = document.getElementById("tec_cpword")
+    //     var validmob = /^[6-9]{1}[0-9]{9}$/;
+    //     var validemail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    //     var validpword =  /^([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{4,8})$/;
+        // if (mob.value.match(validmob))
+        // {
+           
+        //    return False
+
+        // }
+        // else
+        // {
+        //     mob.style.color="red"
+        //     // document.getElementById("tec_mob").focus();
+        //     return False
+        // }
+
+
+
+    //     if (email.value.match(validemail))
+    //     {
+    //        return False
+            
+    //     }
+    //     else
+    //     {
+    //         email.style.color="red"
+    //         return False
+    //     }
+
+
+    //     if  (pword.value.match(validpword))
+    //         {
+    //             alert("ok")
+    //             return False
+    //         }
+    //         else
+    //         {
+    //             alert("dffg")
+    //             spassword.innerHTML="password must be four to eight charecters"
+    //             spassword.style.color="red"
+    //             return False
+    //         }
+
+
+        
+
+        
+
+
+    // }
+
+    
+        $('#submit').click(function(){
+            
+            var  mob=$('#tec_mob').val()
+            var validmob = /^[6-9]{1}[0-9]{9}$/;
+            if  (mob.match(validmob))
+            {
+            console.log('ok')
+            }
+            
+            else
+            {
+                $("#tec_mob").css("background-color", "red");
+                console.log('no')
+                return false
+                
+            }
+
+            
+            var validemail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            
+            var email = $('#tec_email').val()
+
+            if  (email.match(validemail))
+            {
+            console.log('ok1')
+            }
+            
+            else
+            {
+                $("#tec_email").css("font color", "red");
+                console.log('no1')
+                return false
+            }
+
+           
+            
+        })
+        $('#tec_mob').click(function(){
+                    
+                    $("#tec_mob").css("background-color", "white");
+
+
+
+                } )
+
+
+                $('#tec_email').click(function(){
+                   
+                    $("#tec_email").css("background-color", "white");
+
+
+
+                } )
+    
+    
+</script>
+
+
+</body>
+</html>

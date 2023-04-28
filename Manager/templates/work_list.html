@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manager work list</title>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.4.js"
+			  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+			  crossorigin="anonymous">
+            </script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    
+        <div class="topbar">
+           <a href="{% url 'Manager:logout' %}">Logout</a> 
+        </div>
+        <div class="main_body">
+            <div class="side_bar">
+               
+                <a href="{% url 'Manager:manager_home' %}">Home </a>
+                
+                
+                
+    
+            </div>
+    
+         <div class="main_window" >
+            
+            <form  action="" method="POST" enctype="multipart/form-data" >
+                <div class="filter">
+                {% csrf_token %}
+
+                Technician
+                <div>
+                    
+                <select name="tec" id="tec">
+                    <option selected disabled>Select</option>
+                    {% for i in tec_list %}
+                    <option value="{{i.id}}">{{i.tec_name}}</option>
+                    {% endfor %} 
+                </select>
+                </div>
+<br> <br> <br>
+Status
+               <div>
+                <select name="status" id="status">
+                    <option disabled selected>Select</option>
+                    <option value="new">new</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Finished">Finished</option>
+                </select>
+                </div>
+                
+                <select name="search" id="search" style="width: 150px;">
+                    <option value="complaint_name">Complaint number</option>
+                    <option value="customer_name">Customer name</option>
+                    
+                    <option value="customer_phone1">Phone</option>
+                
+                
+                </select>
+                <input type="text" name="cnumber" id="cnumber">
+                <button  id="submit"  type="submit" >Go</button>
+            </form>
+            
+            
+                </div>
+            
+            
+            <table class="work_list">
+           
+                <tr  id="hd"><td></td><td>Complaint Number</td><td>Customer Name</td><td>Customer phone</td><td>Technician</td><td>Satatus</td></th> 
+                {% for i in page_obj.object_list %}
+                <tr><td>{{forloop.counter}}</td><td><a href="{% url 'Manager:view_work' i.id %}">{{i.complaint_name}}</a></td></a><td>{{i.customer_name}}</td><td>{{i.customer_phone1}}</td><td>{{i.technician_name}}</td><td>{{i.work_status}}</td></tr>
+                {% endfor %} 
+        
+            </table>
+
+            
+            <div class="pagination">
+                {%if page_obj.has_previous %} 
+                <!-- {# whether the previous page exists #} -->
+                    <a href="?page={{page_obj.previous_page_number}}"><div class="button_1">Back</div></a>
+                     <!-- {# link to the prev page #} -->
+                {% endif %}
+                <span><div class="button_1">{{page_obj.number}}</div></span> {# the current page number #}
+                
+                {%if page_obj.has_next %} 
+                <!-- {# whether the next page exists #} -->
+                    <a href="?page={{page_obj.next_page_number}}"><div class="button_1">Next</div></a> 
+                    <!-- {# link to the next page #} -->
+                {% endif %}
+            </div>
+        
+
+
+
+         </div>
+<script>
+   
+       
+
+
+        </script> 
+     
+</body>
+</html>

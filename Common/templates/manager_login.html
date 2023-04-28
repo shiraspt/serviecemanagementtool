@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manager login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="main_body">
+       
+     <div class="main_window" style="width: 100%;">
+       
+
+           
+        
+        <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="login_form">
+            <t1>Manager Login</t1>
+            <input type="text" id="manager_username" name="manager_username" placeholder="Username" style="margin-top: 150px;">
+        <br>
+           
+            <input type="password" id="manager_password" name="manager_password" placeholder="Password">
+            <button id="button_1" class="button_1" style="margin-left: 0px;">SUBMIT</button>
+            
+
+            
+            <span><p style="color: rgb(243, 24, 24);">{{msg}}</p></span>
+            
+        </div>
+        
+        </form>
+        <a href="home"><div class="button_1"> Home</div></a>
+
+
+
+     </div>
+
+    </div>
+   
+</body>
+</html>

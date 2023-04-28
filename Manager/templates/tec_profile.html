@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tec profile</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .reg_form  tr  td
+        {
+           
+        }
+    </style>
+</head>
+<body>
+
+         
+    <div class="topbar">
+        <a href="{% url 'Manager:logout' %}">Logout</a> 
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+            
+             <a href="{% url 'Manager:manager_home' %}">Home </a>
+             
+             
+             
+ 
+         </div>
+ 
+      <div class="main_window">
+        <div class="reg_form_1"  style="display: flex;column-gap: 200px;">
+        <table class="reg_form">
+            <tr><td>Name</td><td>{{tec_data.tec_name}}</td></tr>
+             <tr><td>Mobile Number</td><td>{{tec_data.tec_phone}}</td></tr>
+             <tr><td>E mail</td><td> {{tec_data.tec_email}}</td></tr>
+             <tr><td>Age</td><td>{{tec_data.tec_age}}</td></tr>
+             <tr><td>Gender</td><td>{{tec_data.tec_gender}}
+                 </td></tr>
+    
+        </table>
+        <table class="reg_form">
+             <tr>
+                <td>Work Location</td><td>
+                    {{tec_data.tec_location}}
+             </td>
+            </tr>
+             <tr><td>Address</td><td>{{tec_data.tec_Address}}</td></tr>
+             
+             <tr><td>Photo</td><td><img src="{{tec_data.tec_photo.url}}" width="100px;height100px"></td></tr>
+</table>
+</div>
+<a href="{% url 'Manager:update_tech' tec_data.id %}"><div class="button_1">Update</div></a>
+       </div>
+       
+</body>
+</html>

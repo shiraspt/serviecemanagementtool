@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliaint list</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    
+    <div class="topbar">
+        <a href="{% url 'Cce:logout' %}">Logout</a> 
+        {{cce_details.cce_name}}
+     </div>
+     <div class="main_body">
+         <div class="side_bar">
+             <a href="#">View Complaints </a>
+             <a href="{% url 'Cce:register_work' %}">Register work</a>
+             
+             <!-- <a href="#">My Profile</a> -->
+ 
+         </div>
+ 
+      <div class="main_window">
+      <table class="work_list">
+           
+        <tr  id="hd"><td></td><td>Complaint Number</td><td>Customer Name</td><td>Customer phone</td><td>Technician</td><td>Satatus</td></th> 
+        {% for i in page_obj.object_list %}
+        <tr><td>{{forloop.counter}}</td><td><a href="{% url 'Cce:view_complaint' i.id %}">{{i.complaint_name}}</a></td></a><td>{{i.customer_name}}</td><td>{{i.customer_phone1}}</td><td>{{i.technician_name}}</td><td>{{i.work_status}}</td></tr>
+        {% endfor %} 
+
+    </table>
+    <div class="pagination">
+        {%if page_obj.has_previous %} 
+        <!-- {# whether the previous page exists #} -->
+            <a href="?page={{page_obj.previous_page_number}}"><div class="button_1">Back</div></a>
+             <!-- {# link to the prev page #} -->
+        {% endif %}
+        <span><div class="button_1">{{page_obj.number}}</div></span> {# the current page number #}
+        
+        {%if page_obj.has_next %} 
+        <!-- {# whether the next page exists #} -->
+            <a href="?page={{page_obj.next_page_number}}"><div class="button_1">Next</div></a> 
+            <!-- {# link to the next page #} -->
+        {% endif %}
+    </div>
+     </div>
+
+
+</body>
+</html>
