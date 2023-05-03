@@ -116,14 +116,14 @@ def add_report(request,cid):
 
 
 
-            send_mail(
-            'complaint status',
+        #     send_mail(
+        #     'complaint status',
             
-            message,
-            settings.EMAIL_HOST_USER,
-            [cus_email],
-            fail_silently = False 
-        )
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [cus_email],
+        #     fail_silently = False 
+        # )
 
 
         except Exception as e:

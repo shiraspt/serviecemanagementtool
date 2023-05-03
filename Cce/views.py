@@ -131,14 +131,14 @@ def register_work(request):
             
     
 
-            send_mail(
-            'complaint registerd',
+        #     send_mail(
+        #     'complaint registerd',
             
-            message,
-            settings.EMAIL_HOST_USER,
-            [cus_email],
-            fail_silently = False 
-        )
+        #     message,
+        #     settings.EMAIL_HOST_USER,
+        #     [cus_email],
+        #     fail_silently = False 
+        # )
 
 
             return render (request,"added_data.html",{'complaint_data':complaint_data})
