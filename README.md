@@ -1,6 +1,6 @@
 # serviecemanagementtool
 
-SERVICE MANGEMENT TOOL FOR CONSUMER ELECTRONICS BRANDS
+SERVICE MANGEMENT TOOL FOR CONSUMER ELECTRONICS BRANDS:
 After sale service is the major factor for success of any consumer electronics brand.
 Good service without delay is important for customer satisfaction.A service management software is essential for this purpose
 
